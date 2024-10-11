@@ -113,9 +113,8 @@ npm run test:coverage
 You can access the Postman collection for this API [here](#).
 
 ### **Submission Requirements**
-- Repository: [GitHub Repo Link](#)
-- Hosted API: [Heroku URL](#)
-- Postman Collection: [Public Postman URL](#)
+- Hosted API: [](#)
+- Postman Collection: [Public Postman URL](https://elements.getpostman.com/redirect?entityId=20003218-bf8406c2-92e8-410f-afc1-f6d05398b738&entityType=collection)
 
 ### **License**
 
