@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
+const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
+const errorHandler_1 = require("./middleware/errorHandler");
+const authMiddleware_1 = require("./middleware/authMiddleware");
+dotenv_1.default.config();
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use('/users', userRoutes_1.default);
+app.use('/users', authMiddleware_1.authMiddleware, postRoutes_1.default);
+app.use('/posts', authMiddleware_1.authMiddleware, commentRoutes_1.default);
+app.use(errorHandler_1.errorHandler);
+exports.default = app;
