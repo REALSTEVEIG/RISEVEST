@@ -1,4 +1,4 @@
-## **Backend REST API - Senior Backend Engineer Test**
+## **Risevest Backend Engineer Test**
 
 ### **Overview**
 
@@ -25,7 +25,7 @@ This project is a RESTful API built using Node.js, Express, TypeScript, and Post
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/REALSTEVEIG/RISEVEST
 cd your-repo
 ```
 
@@ -51,7 +51,7 @@ JWT_SECRET=your_jwt_secret
 4. Start the database using Docker:
 
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
 5. Build the project:
@@ -110,26 +110,19 @@ npm run test:coverage
 
 ### **Postman Documentation**
 
-You can access the Postman collection for this API [here](#).
+You can access the Postman collection for this API.
 
-### **Submission Requirements**
-- Hosted API: [](#)
-- Postman Collection: [Public Postman URL](https://elements.getpostman.com/redirect?entityId=20003218-bf8406c2-92e8-410f-afc1-f6d05398b738&entityType=collection)
+- Postman Collection: [Postman URL](https://elements.getpostman.com/redirect?entityId=20003218-bf8406c2-92e8-410f-afc1-f6d05398b738&entityType=collection)
 
-### **License**
-
-This project is licensed under the MIT License.
-
----
-
-### Final Checklist:
+### Checklist:
 
 - **API**: All required endpoints are implemented.
 - **Performance Challenge**: The `/users/top` endpoint is optimized.
 - **Middleware**: JWT authentication is in place.
 - **Error Handling**: Handled using `errorHandler` middleware.
-- **Tests**: Jest tests are added for controllers and services.
+- **Tests**: Jest tests are added for the services.
 - **Docker**: Both Dockerfile and docker-compose are in place.
 - **Postman**: Generate and share Postman collection for all endpoints.
+- **Deployment**: The API is hosted on Azure. [LIVE-API](https://risebackend-aff0h8gwemh0e7e3.canadacentral-01.azurewebsites.net/users)
 - **GitHub Documentation**: README file covers setup, usage, and testing.
 
