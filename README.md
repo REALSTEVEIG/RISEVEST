@@ -112,7 +112,7 @@ npm run test:coverage
 
 You can access the Postman collection for this API.
 
-- Postman Collection: [Postman URL](https://elements.getpostman.com/redirect?entityId=20003218-bf8406c2-92e8-410f-afc1-f6d05398b738&entityType=collection)
+- Postman Collection: [Postman URL](https://documenter.getpostman.com/view/20003218/2sAXxS6W7D)
 
 ### Checklist:
 
