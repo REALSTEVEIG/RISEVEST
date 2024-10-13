@@ -23,7 +23,7 @@ describe('commentService', () => {
         return postRepo as any;
       }
       return {} as any;
-    });    
+    });
   });
 
   afterEach(() => {
