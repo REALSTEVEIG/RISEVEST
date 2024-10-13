@@ -13,7 +13,7 @@ describe('userService', () => {
   };
 
   beforeEach(() => {
-    (AppDataSource.getRepository as jest.Mock).mockReturnValue(userRepo);
+    jest.spyOn(AppDataSource, 'getRepository').mockReturnValue(userRepo as any);
   });
 
   afterEach(() => {

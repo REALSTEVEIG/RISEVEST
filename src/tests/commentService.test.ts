@@ -1,17 +1,29 @@
 import { commentService } from '../services/commentService';
 import { AppDataSource } from '../config/database';
 import { Comment } from '../models/comment';
+import { Post } from '../models/post';
 
-jest.mock('../config/database'); 
+jest.mock('../config/database');
 
 describe('commentService', () => {
-  const commentRepo = { create: jest.fn(), save: jest.fn() };
-  const postRepo = { findOneBy: jest.fn() };
+  const commentRepo = {
+    create: jest.fn(),
+    save: jest.fn(),
+  };
+  const postRepo = {
+    findOneBy: jest.fn(),
+  };
 
   beforeEach(() => {
-    (AppDataSource.getRepository as jest.Mock).mockImplementation((model) => {
-      return model === Comment ? commentRepo : postRepo;
-    });
+    jest.spyOn(AppDataSource, 'getRepository').mockImplementation((model) => {
+      if (model === Comment) {
+        return commentRepo as any;
+      }
+      if (model === Post) {
+        return postRepo as any;
+      }
+      return {} as any;
+    });    
   });
 
   afterEach(() => {

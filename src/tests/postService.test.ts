@@ -1,16 +1,30 @@
 import { postService } from '../services/postService';
 import { AppDataSource } from '../config/database';
 import { Post } from '../models/post';
+import { User } from '../models/user';
 
 jest.mock('../config/database');
 
 describe('postService', () => {
-  const postRepo = { create: jest.fn(), save: jest.fn(), find: jest.fn() };
-  const userRepo = { findOneBy: jest.fn() };
+  const postRepo = {
+    create: jest.fn(),
+    save: jest.fn(),
+    find: jest.fn(),
+  };
+  const userRepo = {
+    findOneBy: jest.fn(),
+  };
 
   beforeEach(() => {
-    (AppDataSource.getRepository as jest.Mock)
-      .mockImplementation((model) => (model === Post ? postRepo : userRepo));
+    jest.spyOn(AppDataSource, 'getRepository').mockImplementation((model) => {
+      if (model === Post) {
+        return postRepo as any;
+      }
+      if (model === User) {
+        return userRepo as any;
+      }
+      return {} as any;
+    });
   });
 
   afterEach(() => {

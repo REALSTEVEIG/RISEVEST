@@ -10,7 +10,9 @@ describe('Auth Middleware', () => {
   let nextFunction: NextFunction = jest.fn();
 
   beforeEach(() => {
-    mockRequest = {};
+    mockRequest = {
+      headers: {},
+    };
     mockResponse = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
@@ -20,15 +22,29 @@ describe('Auth Middleware', () => {
   it('should return 401 if no token is provided', () => {
     authMiddleware(mockRequest as Request, mockResponse as Response, nextFunction);
     expect(mockResponse.status).toHaveBeenCalledWith(401);
+    expect(mockResponse.json).toHaveBeenCalledWith({ message: 'Unauthorized' });
   });
 
   it('should call next if token is valid', () => {
     const token = 'valid_token';
-    mockRequest = { headers: { authorization: token } };
+    mockRequest.headers = { authorization: token };
 
     (jwt.verify as jest.Mock).mockReturnValue({ id: 1, email: 'test@example.com' });
 
     authMiddleware(mockRequest as Request, mockResponse as Response, nextFunction);
     expect(nextFunction).toHaveBeenCalled();
+  });
+
+  it('should return 403 if token is invalid', () => {
+    const token = 'invalid_token';
+    mockRequest.headers = { authorization: token };
+
+    (jwt.verify as jest.Mock).mockImplementation(() => {
+      throw new Error('Invalid token');
+    });
+
+    authMiddleware(mockRequest as Request, mockResponse as Response, nextFunction);
+    expect(mockResponse.status).toHaveBeenCalledWith(403);
+    expect(mockResponse.json).toHaveBeenCalledWith({ message: 'Forbidden' });
   });
 });
